@@ -1,7 +1,15 @@
-import { Flex, Text } from 'rebass'
+import { Flex, Text, Box } from 'rebass'
 import './styles/App.css';
 import { colors, font, sizes } from './styles/variables.js'
 import Header from './components/header'
+import styled from 'styled-components'
+
+const InputBox = styled(Box)`
+  outline-style: solid;
+  width: 80%;
+  margin-top: ${sizes.md}px;
+  height: ${sizes.lg}px;
+`
 
 const tasks = ["wash car", "cook dinner", "do test"]
 
@@ -39,6 +47,7 @@ const App = () => {
         height='50vh'
         bg={colors.white}
       >
+        <InputBox />
         {viewTasks()}
       </Flex>
     </Flex>
