@@ -1,5 +1,5 @@
-import { Flex, Text } from 'rebass'
-import { colors, font, sizes } from '../styles/variables.js'
+import { Flex } from 'rebass'
+import { colors, sizes } from '../styles/variables.js'
 
 const TodoTabs = ({todo, index, completeTodo, removeTodo }) => {
 
