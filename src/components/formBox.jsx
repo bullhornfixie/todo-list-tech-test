@@ -5,7 +5,8 @@ const FormBox = ({ children }) => (
   <Flex
     flexDirection='column'
     width='50vh'
-    height='50vh'
+    minHeight='50vh'
+    height='auto'
     padding='10px'
     bg={colors.white}
   >

@@ -24,7 +24,7 @@ const colors = {
   purple: '#B431FF',
   yellow: '#FFFF00',
   grey: '#d3d3d3',
-  turquoise: '#40E0D0',
+  turquoise: '#7df9ff',
   transparent: 'rgba(255,255,255,0)',
   overlay: 'rgba(00,00,00,0.5)',
 }
