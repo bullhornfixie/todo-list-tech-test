@@ -1,48 +1,11 @@
 import React from "react";
 import { useState } from 'react'
-import { Flex, Text, Box } from 'rebass'
-import { colors, font, sizes } from './styles/variables.js'
-import Header from './components/header'
-import styled from 'styled-components'
 import './styles/App.css';
-
-const Todo = ({ todo, index, completeTodo, removeTodo }) => {
-  return (
-
-    <Flex flexDirection='row' justifyContent='space-between' mt='10px'
-      className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
-    >
-      {todo.text}
-       <Flex> 
-          <button onClick={() => completeTodo(index)}>Complete</button>
-          <button onClick={() => removeTodo(index)}>x</button>
-       </Flex>
-    </Flex>
-  );
-}
-
-const TodoForm = ({ addTodo }) => {
-  const [value, setValue] = useState("");
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!value) return;
-    addTodo(value);
-    setValue("");
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="input"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
-    </form>
-  );
-}
+import Header from './components/header'
+import Layout from './components/layout'
+import FormBox from './components/formBox'
+import TodoTabs from './components/todoTabs'
+import TodoNew from './components/todoNew'
 
 const App = () => {
   const [todos, setTodos] = useState([
@@ -59,53 +22,56 @@ const App = () => {
       isCompleted: false
     }
   ]);
+  // example todo tabs 
 
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
   };
+  // text is input value 
+  // function is passed to TodoNew component
 
   const completeTodo = index => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = true;
     setTodos(newTodos);
+    // onClick of completed button tab 
+    // index of current tab passed to function as prop 
+    // todos array deconstructed
+    // isCompleted = true || strikethrough of tab 
+    // change value of todos array value 
   };
+
 
   const removeTodo = index => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
+    // onClick of x button on tab 
+    // index of current tab passed to function as prop 
+    // todos array deconstructed
+    // remove selected tab 
+    // change value of todos array value
   };
-
+  
+  
   return (
   <>
     <Header />
-      <Flex 
-        flexDirection='column'
-        bg={colors.black}
-        height='100vh'
-        alignItems='center'
-        justifyContent='center'
-      >
-        <Flex
-          flexDirection='column'
-          width='50vh'
-          height='50vh'
-          padding='10px'
-          bg={colors.white}
-        >
-          {todos.map((todo, index) => (
-            <Todo
-              key={index}
-              index={index}
-              todo={todo}
-              completeTodo={completeTodo}
-              removeTodo={removeTodo}
-            />
+      <Layout>
+        <FormBox>
+          <TodoNew addTodo={addTodo} />
+            {todos.map((todo, index) => (
+              <TodoTabs
+                key={index} // unique key 
+                index={index}
+                todo={todo}
+                completeTodo={completeTodo}
+                removeTodo={removeTodo}
+              />
           ))}
-          <TodoForm addTodo={addTodo} />
-        </Flex>
-      </Flex>
+        </FormBox>
+      </Layout>
   </>
   );
 }

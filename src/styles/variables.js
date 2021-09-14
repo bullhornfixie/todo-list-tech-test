@@ -20,6 +20,7 @@ const breakpoints = {
 const colors = {
   white: '#FFFFFF',
   black: '#000000',
+  blue: '#3137fd',
   purple: '#B431FF',
   yellow: '#FFFF00',
   grey: '#d3d3d3',
